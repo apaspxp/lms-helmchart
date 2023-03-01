@@ -8,6 +8,8 @@ Builds the app for production to the `build` folder.\
 
 ### `npm run eject`
 
+### `Boilerplate Features`
+
 1) Project contains basic routing using <b>react-router-dom</b>
 
 2) Contains basic structure of react js with login, register and logout functionality
