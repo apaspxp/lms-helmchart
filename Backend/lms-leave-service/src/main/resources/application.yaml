@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: lms-leave-service
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3307/hello
+    username: root
+    password: sarthak123
+server:
+  port: 8000
