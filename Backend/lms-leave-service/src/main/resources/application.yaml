@@ -4,7 +4,7 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/hello
-    username: root
-    password: sarthak123
+    username: lms
+    password: lms123
 server:
   port: 8000
