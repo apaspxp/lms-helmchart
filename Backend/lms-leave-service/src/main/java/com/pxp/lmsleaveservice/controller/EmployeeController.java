@@ -15,7 +15,7 @@ public class EmployeeController {
     @Autowired
     EmployeeRepo employeeRepo;
 
-    @RequestMapping(value="getAllEmployee", method = RequestMethod.GET)
+    @RequestMapping(value="getAllEmployees", method = RequestMethod.GET)
     public List<EmployeeEntity> getAllEmployee(){
         return employeeRepo.findAll();
     }
