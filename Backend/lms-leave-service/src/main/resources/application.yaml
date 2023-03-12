@@ -1,17 +1,25 @@
 spring:
   application:
     name: lms-leave-service
+  config:
+    import: optional:configserver:http://localhost:5555
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
 #  datasource:
 #    driverClassName: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/hello
 #    username: root
 #    password: sarthak123
-app:
-  datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/hello
-    username: lms
-    password: lms123
-    configuration:
-      max-pool-size: 50
+#app:
+#  datasource:
+#    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/hello
+#    username: lms
+#    password: lms123
+#    configuration:
+#      max-pool-size: 50
+
 server:
   port: 8000
