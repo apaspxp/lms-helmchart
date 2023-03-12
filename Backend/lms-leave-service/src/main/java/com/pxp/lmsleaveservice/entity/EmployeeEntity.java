@@ -8,6 +8,7 @@ import lombok.Data;
 @Entity
 @Data
 public class EmployeeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="employee_id")
