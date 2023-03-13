@@ -5,10 +5,11 @@ import DefaultRoute from "./directory/DefaultRoute";
 import LoginRoute from "./directory/LoginRoute";
 import HomeRoute from "./directory/HomeRoute";
 import SupportRoute from "./directory/SupportRoute";
+import AdminRoute from "./directory/AdminRoute";
 
 
 //All Routes
-const ROUTES = [DefaultRoute, LoginRoute, HomeRoute, ProfileRoute, SupportRoute];
+const ROUTES = [DefaultRoute, AdminRoute, LoginRoute, HomeRoute, ProfileRoute, SupportRoute];
 
 export default ROUTES;
 

@@ -22,7 +22,7 @@ function App() {
 
             {localStorage.getItem("token") != null ?
                 <button onClick={logout}>Log Out</button>
-            : ""} <br/><br/><br/>
+            : ""} <br/>
 
             <RenderRoutes routes={ROUTES} />
         </div>
