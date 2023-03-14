@@ -1,4 +1,8 @@
 spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
   application:
     name: lms-leave-service
   config:
