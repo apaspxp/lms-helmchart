@@ -21,7 +21,12 @@ public class EmployeeController {
 
     @RequestMapping(value="getAllEmployees", method = RequestMethod.GET)
     public List<EmployeeEntity> getAllEmployee(){
-        emailUtility.sendEmail("qsarthak@gmail.com", "qsarthak@gmail.com", "Test", "Hello Sarthak, hope u r doing well");
         return employeeRepo.findAll();
+    }
+
+    @RequestMapping(value="sendMail", method = RequestMethod.GET)
+    public String sendMail(){
+        emailUtility.sendEmail("qsarthak@gmail.com", "qsarthak@gmail.com", "Test", "Hello Sarthak, hope u r doing well");
+        return "mail sent";
     }
 }

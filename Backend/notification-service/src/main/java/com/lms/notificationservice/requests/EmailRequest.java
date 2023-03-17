@@ -1,4 +1,4 @@
-package com.pxp.lmsleaveservice.requests;
+package com.lms.notificationservice.requests;
 
 import lombok.Data;
 

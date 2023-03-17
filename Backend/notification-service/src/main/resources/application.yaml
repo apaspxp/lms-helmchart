@@ -1,0 +1,36 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: notification-service
+  #MySQL
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/hello
+    username: lms
+    password: lms123
+  #Kafka
+  kafka:
+    consumer:
+      group-id: grp_id
+    bootstrap-servers: localhost:9092
+  #EMail
+  mail:
+    host: smtp.gmail.com
+    username: qsarthak@gmail.com
+    password: yourpassword
+    port: 587
+    debug: false
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+      protocol: smtp
+
+#Kafka Topics
+topic:
+  email: lms_email
+

@@ -19,9 +19,15 @@ public class EmailUtility {
 
     public void sendEmail(String from, String to, String subject, String body){
         try {
-            log.info("Sending mail to kafka topic : {}",kafkaTopic);
-            EmailRequest emailRequest = new EmailRequest(from, to, subject, body, null);
+            log.info("Sending email message to kafka topic : {}", kafkaTopic);
+            EmailRequest emailRequest = new EmailRequest();
+            emailRequest.setFrom(from);
+            emailRequest.setTo(to);
+            emailRequest.setSubject(subject);
+            emailRequest.setBody(body);
+            emailRequest.setAttachment("");
             kafkaTemplate.send(kafkaTopic, emailRequest);
+            log.info("Email topic sent to kafka successfully");
         } catch (Exception e) {
             e.printStackTrace();
             log.error(e.getMessage());
