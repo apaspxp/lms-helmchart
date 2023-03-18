@@ -21,9 +21,6 @@ public class EmailConsumer {
     public void consumeJson(EmailRequest emailRequest) {
         log.info("Message Received : {}", emailRequest);
         emailService.sendMail(emailRequest);
-        if (emailRequest.getBody().startsWith("Sarthak")) {
-            throw new RuntimeException("failed");
-        }
     }
 
     @KafkaHandler(isDefault = true)

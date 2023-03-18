@@ -18,6 +18,11 @@ public class EmailService implements IEmailService {
     @Override
     public void sendMail(EmailRequest emailRequest) {
         try {
+            if (emailRequest.getBody().startsWith("Sarthak")) {
+                throw new RuntimeException("failed");
+            } else if (emailRequest.getBody().startsWith("Mehta")) {
+                throw new NullPointerException("failed");
+            }
             log.info("sending mail to {} ....", emailRequest.getTo());
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(emailRequest.getFrom());
@@ -26,7 +31,8 @@ public class EmailService implements IEmailService {
             message.setText(emailRequest.getBody());
             emailSender.send(message);
             log.info("mail sent to {}", emailRequest.getTo());
-        } catch (Exception e){
+        }
+        catch (Exception e){
             e.printStackTrace();
             throw e;
         }
