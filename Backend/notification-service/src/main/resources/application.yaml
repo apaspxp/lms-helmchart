@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: notification-service
+    name: lms-notification-service
   #MySQL
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
