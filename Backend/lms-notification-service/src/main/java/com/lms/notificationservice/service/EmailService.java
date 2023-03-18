@@ -17,14 +17,19 @@ public class EmailService implements IEmailService {
 
     @Override
     public void sendMail(EmailRequest emailRequest) {
-        log.info("sending mail to {} ....", emailRequest.getTo());
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(emailRequest.getFrom());
-        message.setTo(emailRequest.getTo());
-        message.setSubject(emailRequest.getSubject());
-        message.setText(emailRequest.getBody());
-        emailSender.send(message);
-        log.info("mail sent to {}", emailRequest.getTo());
+        try {
+            log.info("sending mail to {} ....", emailRequest.getTo());
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom(emailRequest.getFrom());
+            message.setTo(emailRequest.getTo());
+            message.setSubject(emailRequest.getSubject());
+            message.setText(emailRequest.getBody());
+            emailSender.send(message);
+            log.info("mail sent to {}", emailRequest.getTo());
+        } catch (Exception e){
+            e.printStackTrace();
+            throw e;
+        }
     }
 
 }

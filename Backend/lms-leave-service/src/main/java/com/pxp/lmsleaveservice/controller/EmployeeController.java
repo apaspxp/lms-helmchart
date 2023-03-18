@@ -6,6 +6,7 @@ import com.pxp.lmsleaveservice.utility.EmailUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -25,8 +26,8 @@ public class EmployeeController {
     }
 
     @RequestMapping(value="sendMail", method = RequestMethod.GET)
-    public String sendMail(){
-        emailUtility.sendEmail("qsarthak@gmail.com", "qsarthak@gmail.com", "Test", "Hello Sarthak, hope u r doing well");
+    public String sendMail(@RequestParam("body") String body){
+        emailUtility.sendEmail("qsarthak@gmail.com", "qsarthak@gmail.com", "Test", body);
         return "mail sent";
     }
 }

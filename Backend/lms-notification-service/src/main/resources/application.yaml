@@ -14,7 +14,12 @@ spring:
   kafka:
     consumer:
       group-id: grp_id
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     bootstrap-servers: localhost:9092
+    backoff:
+      interval: 5000
+      max_failure: 1
   #EMail
   mail:
     host: smtp.gmail.com
@@ -33,4 +38,5 @@ spring:
 #Kafka Topics
 topic:
   email: lms_email
+  failedEmail: lms_failed_email
 
