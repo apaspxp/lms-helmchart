@@ -2,6 +2,7 @@ package com.lms.notificationservice.config;
 
 import com.google.gson.Gson;
 import com.lms.notificationservice.requests.EmailRequest;
+import com.lms.notificationservice.requests.RetryRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -34,6 +35,8 @@ public class KafkaEmailConfig {
     private String bootstrapServers;
     @Value("${topic.failedEmail}")
     String failedEmailTopic;
+    @Value("${topic.retryEmail}")
+    String retryEmailTopic;
     @Value(value = "${spring.kafka.backoff.interval}")
     private Long interval = 1200L;
     @Value(value = "${spring.kafka.backoff.max_failure}")
@@ -72,10 +75,16 @@ public class KafkaEmailConfig {
         BackOff fixedBackOff = new FixedBackOff(interval, maxAttempts);
         DefaultErrorHandler errorHandler = new DefaultErrorHandler((consumerRecord, exception) -> {
 
+            RetryRequest retryEmailRequest = new RetryRequest();
+            retryEmailRequest.setAttempts(1);
+            retryEmailRequest.setData(consumerRecord.value());
+
             // logic to execute when all the retry attempts are exhausted
             log.info("***** All attempts reached ***** {}", new Gson().toJson(consumerRecord.value()));
+            log.info("consumerRecord {}", consumerRecord);
+            log.info("exception {}", exception);
             //send all failed emails to failed topic
-            kafkaTemplate.send(failedEmailTopic, consumerRecord.value());
+            kafkaTemplate.send(retryEmailTopic, retryEmailRequest);
 
         }, fixedBackOff);
         errorHandler.addRetryableExceptions(SocketTimeoutException.class);

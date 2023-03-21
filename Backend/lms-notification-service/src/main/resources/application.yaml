@@ -38,5 +38,6 @@ spring:
 #Kafka Topics
 topic:
   email: lms_email
+  retryEmail: lms_retry_email
   failedEmail: lms_failed_email
 
