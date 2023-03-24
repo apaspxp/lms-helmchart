@@ -33,7 +33,7 @@ public class EmailService implements IEmailService {
             log.info("mail sent to {}", emailRequest.getTo());
         }
         catch (Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
             throw e;
         }
     }

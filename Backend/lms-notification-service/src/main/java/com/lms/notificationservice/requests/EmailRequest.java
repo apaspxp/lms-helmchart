@@ -9,4 +9,5 @@ public class EmailRequest {
     private String subject;
     private String body;
     private String attachment;
+    private Integer retryCount = 1;
 }
