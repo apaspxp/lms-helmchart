@@ -38,6 +38,9 @@ spring:
 #Kafka Topics
 topic:
   email: lms_email
-  retryEmail: lms_retry_email
-  failedEmail: lms_failed_email
-
+  retry-email:
+    topicName: lms_retry_email
+    maxRetryCount: 2
+    initialDelay: 5000
+    backoffMultiplier: 2
+  failed-email: lms_failed_email
