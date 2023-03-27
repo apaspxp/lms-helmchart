@@ -50,7 +50,7 @@
 				<version>${liquibase.version}</version>
 				<configuration>
 					<driver>com.mysql.cj.jdbc.Driver</driver>
-					<url>jdbc:mysql://localhost:3306/hello</url>
+					<url>jdbc:mysql://localhost:3306/LMSLEAVESERVICE</url>
 					<username>lms</username>
 					<password>lms123</password>
 					<outputChangeLogFile>src/main/resources/db.changelog1/liquibase-outputChangeLog.mysql.sql</outputChangeLogFile>

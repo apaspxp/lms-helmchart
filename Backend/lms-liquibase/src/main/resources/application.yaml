@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/hello
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/LMSLEAVESERVICE
     username: lms
     password: lms123
   liquibase:
