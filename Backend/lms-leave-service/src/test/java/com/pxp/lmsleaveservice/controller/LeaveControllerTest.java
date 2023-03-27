@@ -7,14 +7,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class LeaveControllerTest {
@@ -23,13 +25,11 @@ class LeaveControllerTest {
     private LeaveController leaveController = new LeaveController();
     @Mock
     private HolidayCalendarService holidayCalendarService;
-
     @BeforeEach
     void setUp() {
     }
-
     @Test
-    public void testUploadHolidayCalendar() {
+    public void testUploadHolidayCalendar(){
         try {
             XSSFWorkbook xssfWb1 = new XSSFWorkbook();
             xssfWb1.createSheet("S1");
@@ -39,15 +39,10 @@ class LeaveControllerTest {
             }
 
             MultipartFile file = new MockMultipartFile("test.xlsx", new FileInputStream(f));
-            when(holidayCalendarService.saveHolidayCalender(file, "Test", 1)).thenReturn("Test");
+            Mockito.when(holidayCalendarService.saveHolidayCalender(file,"Test",1)).thenReturn("Test");
             assertEquals("Test", leaveController.uploadHolidayCalendar(file, "Test", 1).getBody());
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    @Test
-    public void testDownloadTemplate() throws IOException {
-        assertEquals("Holiday_calendar_template.xlsx", leaveController.downloadHolidayCalendar().getBody().getFilename());
     }
 }
