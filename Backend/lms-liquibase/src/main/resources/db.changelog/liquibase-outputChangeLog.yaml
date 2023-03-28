@@ -1,0 +1,50 @@
+databaseChangeLog:
+- changeSet:
+    id: 1679933593196-1
+    author: rajes (generated)
+- include:
+    file: ./ddl/ddl.sql
+    relativeToChangelogFile: true
+- include:
+    file: ./dml/dml.sql
+    relativeToChangelogFile: true
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            autoIncrement: true
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#            name: ID
+#            type: INT
+#        - column:
+#            name: DATE
+#            type: VARCHAR(50)
+#        - column:
+#            name: DESCRIPTION
+#            type: VARCHAR(100)
+#        - column:
+#            name: CITY
+#            type: VARCHAR(50)
+#        - column:
+#            name: YEAR
+#            type: INT
+#        tableName: HOLIDAY_CALENDAR
+#- changeSet:
+#    id: 1679933593196-2
+#    author: rajes (generated)
+#    changes:
+#    - createTable:
+#        columns:
+#        - column:
+#            constraints:
+#              nullable: false
+#              primaryKey: true
+#            name: employee_Id
+#            type: INT
+#        - column:
+#            name: Name
+#            type: VARCHAR(255)
+#        tableName: employee
+
