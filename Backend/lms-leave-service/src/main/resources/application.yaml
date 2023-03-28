@@ -1,0 +1,46 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: lms-leave-service
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+
+  #Config Server
+  config:
+    import: optional:configserver:http://localhost:5555
+
+  #Kafka Config
+  kafka:
+    consumer:
+      group-id: tpd-loggers
+      auto-offset-reset: earliest
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    bootstrap-servers: localhost:9092
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+
+#Kafka Topics
+topic:
+  email: lms_email
+
+#  datasource:
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/hello
+#    username: root
+#    password: sarthak123
+#app:
+#  datasource:
+#    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/hello
+#    username: lms
+#    password: lms123
+#    configuration:
+#      max-pool-size: 50

@@ -1,0 +1,64 @@
+.admin-dashboard{
+    height: 800px;
+    margin-bottom: 20px;
+}
+
+.admin-dashboard-layout{
+    margin-top: 40px;
+}
+
+.admin-dashboard-card{
+    height: 230px;
+}
+
+.admin-dashboard-card-content{
+    background-color: #f9f9f9;
+    padding: 10px;
+    height: 200px;
+    text-align: center;
+    border-radius: 15px;
+    /* border: 1px solid #202629; */
+    box-shadow: rgb(99 99 99 / 50%) 0px 2px 8px 0px
+}
+
+.admin-dashboard-card-title{
+    color: #62666b;
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 10px;
+    text-transform: capitalize;
+}
+
+.admin-dashboard-card-buttons{
+    height: 100px;
+    padding: 15px 0;
+}
+
+.admin-card-line{
+    color: #62666b;
+    background-color: #62666b;
+    height: 2;
+}
+
+.admin-dashboard-button{
+    text-transform: uppercase;
+    margin: 10px;
+    width: 120px;
+    background: #efefef;
+}
+
+.admin-dashboard-button:hover{
+    transition: 0.1s;
+    /* color: #0b4294; */
+    font-size: 15px;
+    background: #efefef;
+}
+
+.admin-dashboard-button:active{
+    transition: 0.1s;
+    /* color: #0b4294; */
+    font-size: 15px;
+    background: #efefef !important;
+    border: 0px;
+}
+
