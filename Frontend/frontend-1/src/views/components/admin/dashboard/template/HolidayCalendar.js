@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Popup from 'reactjs-popup';
 import { Link } from 'react-router-dom';
-
+import { apiConfig } from '../../../../../api/api.config';
+import axios from "axios";
+import FileSaver from 'file-saver';
+import Swal from 'sweetalert2'
 
 export default function HolidayCalendar(props) {
 
     const [selectedFile, setSelectedFile] = useState(null);
+    const [message, setMessage] = useState('');
 
     function handleDownloadHolidayCalendar(event) {
         event.preventDefault();
         console.log("downloading holiday calendar...")
-        // axios.get("api/downloadHolidayCalendar");
     }
 
     const onFileChange = event => {
@@ -21,16 +24,30 @@ export default function HolidayCalendar(props) {
         event.preventDefault();
         const formData = new FormData();
         formData.append(
-          "myFile",
-          selectedFile,
-          selectedFile.name
+          "file",
+          selectedFile
         );
         console.log(selectedFile);
-        // axios.post("api/admin/uploadHolidayCalendar", formData);
+        const url = apiConfig.uploadHolidayCalendar + '/Hyderabad/2023';
+        axios.post(url, formData).then((response) => {
+            console.log(response);
+            Swal.fire(
+                'Success!',
+                response.data,
+                'success'
+              )
+        }).catch((response) => {
+            console.error("Could not upload the holiday calendar excel report.", response);
+        });
     };
 
     const downloadSampleFile = ()=> { 
         console.log("downloading sample excel...")
+        axios.get(apiConfig.downloadBlankTemplate, {responseType: 'blob'}).then((response) => {
+            FileSaver.saveAs(response.data, "Holiday_calendar_template.xlsx");
+        }).catch((response) => {
+            console.error("Could not download the excel report from the backend.", response);
+        });
     }
 
 	return (<>
@@ -66,10 +83,13 @@ export default function HolidayCalendar(props) {
                             <Link to="#" href="#" onClick={downloadSampleFile}>Download Sample Excel</Link>
                         </div>
                         <div className="mt-3"> <input type="file" onChange={onFileChange}/></div>
-                        <div style={{textAlign:"center", marginTop:"10px"}}>
+                        
+                        <div style={{textAlign:"center", marginTop:"15px"}}>
+                            <div><span className="text-warning" style={{fontFamily: "monospace", fontSize:"14px"}}>{message}</span></div>
                             <input className="btn btn-success m-2" type="submit" value="Upload" disabled={selectedFile==null}/>
                             <button className="btn btn-danger m-2" onClick={close}>Cancel</button>
                         </div>
+                        
                     </form>
                     </div>
                 )}
