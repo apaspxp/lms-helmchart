@@ -9,7 +9,7 @@ import ChangeStatus from './template/ChangeStatus';
 import Sample from './template/Sample';
 
 export default function AdminDashboard(props) {
-	// props.loader(true)
+	
 	return (<>
 		<div className="container-fluid admin-dashboard">
 			<h4 style={{textAlign:"center", marginBottom:"50px", color:"#62666b", textDecoration: "underline"}} >ADMIN DASHBOARD</h4>

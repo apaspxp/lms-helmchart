@@ -11,7 +11,6 @@ export default function HolidayCalendar(props) {
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [message, setMessage] = useState('');
-    const [loading, setLoading] = useState(false);
 
     function handleDownloadHolidayCalendar(event) {
         event.preventDefault();
@@ -117,6 +116,7 @@ export default function HolidayCalendar(props) {
                             <button className="btn btn-danger m-2" onClick={()=>{
                                 close(); 
                                 setMessage('')
+                                props.loader(false);
                                 setSelectedFile(null);
                             }}>Cancel</button>
                         </div>
