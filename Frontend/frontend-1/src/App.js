@@ -1,5 +1,5 @@
 import './App.css';
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -9,6 +9,7 @@ import ROUTES, { RenderRoutes } from './routes/Routes';
 function App() {
 
     const history = useHistory();
+    const [loading, setLoading] = useState(false);
 
     function logout() {
         localStorage.removeItem("token");
@@ -24,7 +25,10 @@ function App() {
                 <button onClick={logout}>Log Out</button>
             : ""} <br/>
 
-            <RenderRoutes routes={ROUTES} />
+            <RenderRoutes routes={ROUTES} loader={setLoading}/>
+            
+            {loading?<div className="loader"></div>:''}
+
         </div>
     );
 }

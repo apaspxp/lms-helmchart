@@ -19,16 +19,16 @@ export function RouteWithSubRoutes(route) {
         <Route
             path={route.path}
             exact={route.exact}
-            render={props => <route.component {...props} routes={route.routes} />}
+            render={props => <route.component {...props} routes={route.routes} loader={route.loader}/>}
         />
     );
 }
 
-export function RenderRoutes({ routes }) {
+export function RenderRoutes({ routes, loader }) {
     return (
         <Switch>
             {routes.map((route, i) => {
-                return <RouteWithSubRoutes key={route.key} {...route} />;
+                return <RouteWithSubRoutes key={route.key} {...route} loader={loader}/>;
             })}
             <Route component={NotFound} />
         </Switch>
