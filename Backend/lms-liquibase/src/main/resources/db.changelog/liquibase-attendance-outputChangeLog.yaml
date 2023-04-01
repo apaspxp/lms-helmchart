@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1679933593196-5
+      author: rajes (generated)
+  - include:
+      file: ./ddl/ddl-attendance.sql
+      relativeToChangelogFile: true
+#  - include:
+#      file: ./dml/dml.sql
+#      relativeToChangelogFile: true
