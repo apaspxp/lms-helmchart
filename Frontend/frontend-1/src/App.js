@@ -1,5 +1,5 @@
 import './App.css';
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -9,6 +9,11 @@ import ROUTES, { RenderRoutes } from './routes/Routes';
 function App() {
 
     const history = useHistory();
+    const [loading, setLoading] = useState(false);
+
+    const setEmployeeIdToLC = (e) =>{
+        localStorage.setItem("empId", e.target.value ) ;
+    }
 
     function logout() {
         localStorage.removeItem("token");
@@ -18,13 +23,21 @@ function App() {
 
     return (
         <div className="App">
-            <a href="/home/directory">All routes</a>
+            <a href="/home/directory">All routes</a>        
+
+            <div style={{float:'right'}}>
+                <input  className='form-control-sm' onChange={setEmployeeIdToLC} placeholder="empId"/> 
+            </div>    
 
             {localStorage.getItem("token") != null ?
                 <button onClick={logout}>Log Out</button>
             : ""} <br/>
 
-            <RenderRoutes routes={ROUTES} />
+            <RenderRoutes routes={ROUTES} loader={setLoading}/>
+            
+            {loading?<div className="loader"></div>:''}
+
+
         </div>
     );
 }

@@ -3,7 +3,7 @@ import Popup from 'reactjs-popup';
 import Swal from 'sweetalert2'
 
 export default function ChangeManager(props) {
-
+    
     const [empId, setEmpId] = useState('');
     const [empName, setEmpName] = useState('');
 

@@ -1,8 +1,8 @@
 server:
   port: 8002
-spring:
   servlet:
     context-path: /lms-attendance-service
+spring:
   application:
     name: lms-attendance-service
   profiles:
@@ -10,7 +10,8 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+    show-sql: true
   config:
     import: optional:configserver:http://localhost:5555
 management:

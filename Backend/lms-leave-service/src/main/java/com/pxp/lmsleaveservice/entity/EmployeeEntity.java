@@ -16,5 +16,4 @@ public class EmployeeEntity {
 
     @Column(name="name")
     private String name;
-
 }
