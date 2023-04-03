@@ -12,7 +12,7 @@ https://micro-services.atlassian.net/jira/software/projects/LMS/boards/1
 
 # Microservices todo
 
-config, circuit breaker, messaging(streaming), tracing..monitoring pramateous, cicd, testing juinit, secret, oauth2, load balancer,
+config, load balancer, circuit breaker, messaging(streaming), tracing..monitoring pramateous, cicd, testing juinit, secret, oauth2, load balancer,
 ssl, swagger, acuator, optional...reactive, ngnix, azure devops
 
 # Boilerplate Code
