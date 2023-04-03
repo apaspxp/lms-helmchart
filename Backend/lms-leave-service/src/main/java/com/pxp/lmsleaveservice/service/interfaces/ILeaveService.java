@@ -2,7 +2,7 @@ package com.pxp.lmsleaveservice.service.interfaces;
 
 import com.pxp.lmsleaveservice.entity.LeaveEntitlementEntity;
 
-public interface IAttendanceService {
+public interface ILeaveService {
 
     public LeaveEntitlementEntity fetchLeaveBalance (String employeeId);
 

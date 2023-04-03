@@ -2,14 +2,14 @@ package com.pxp.lmsleaveservice.service;
 
 import com.pxp.lmsleaveservice.entity.LeaveEntitlementEntity;
 import com.pxp.lmsleaveservice.repo.LeaveEntitlementRepo;
-import com.pxp.lmsleaveservice.service.interfaces.IAttendanceService;
+import com.pxp.lmsleaveservice.service.interfaces.ILeaveService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class AttendanceService implements IAttendanceService {
+public class LeaveService implements ILeaveService {
 
     @Autowired
     private LeaveEntitlementRepo leaveEntitlementRepo;
