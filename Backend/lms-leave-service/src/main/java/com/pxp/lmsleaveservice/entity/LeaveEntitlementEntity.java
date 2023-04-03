@@ -1,4 +1,4 @@
-package com.lms.attendanceservice.entity;
+package com.pxp.lmsleaveservice.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

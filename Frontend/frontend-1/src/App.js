@@ -11,6 +11,10 @@ function App() {
     const history = useHistory();
     const [loading, setLoading] = useState(false);
 
+    const setEmployeeIdToLC = (e) =>{
+        localStorage.setItem("empId", e.target.value ) ;
+    }
+
     function logout() {
         localStorage.removeItem("token");
         window.location.reload();
@@ -19,7 +23,11 @@ function App() {
 
     return (
         <div className="App">
-            <a href="/home/directory">All routes</a>
+            <a href="/home/directory">All routes</a>        
+
+            <div style={{float:'right'}}>
+                <input  className='form-control-sm' onChange={setEmployeeIdToLC} placeholder="empId"/> 
+            </div>    
 
             {localStorage.getItem("token") != null ?
                 <button onClick={logout}>Log Out</button>
@@ -28,6 +36,7 @@ function App() {
             <RenderRoutes routes={ROUTES} loader={setLoading}/>
             
             {loading?<div className="loader"></div>:''}
+
 
         </div>
     );
