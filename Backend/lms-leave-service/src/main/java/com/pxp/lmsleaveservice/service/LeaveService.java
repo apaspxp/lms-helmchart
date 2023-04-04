@@ -94,6 +94,7 @@ public class LeaveService implements ILeaveService {
 
             //Loss Of Pay
             case "LOP":
+                entity.setLopOverdraft(entity.getLopOverdraft()+daysBetween);
                 break;
 
         }
