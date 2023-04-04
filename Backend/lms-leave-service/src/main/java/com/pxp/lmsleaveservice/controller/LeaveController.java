@@ -1,6 +1,7 @@
 package com.pxp.lmsleaveservice.controller;
 
 import com.pxp.lmsleaveservice.entity.LeaveEntitlementEntity;
+import com.pxp.lmsleaveservice.requests.LeaveRequest;
 import com.pxp.lmsleaveservice.service.interfaces.ILeaveService;
 import com.pxp.lmsleaveservice.service.interfaces.IHolidayCalendarService;
 import lombok.extern.slf4j.Slf4j;
@@ -48,8 +49,8 @@ public class LeaveController {
         return new ResponseEntity<>(attendanceService.fetchLeaveBalance(employeeId), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/applyLeave/{employeeId}", method = RequestMethod.GET)
-    public ResponseEntity<LeaveEntitlementEntity> applyLeave(@PathVariable("employeeId") String employeeId){
-        return new ResponseEntity<>(attendanceService.applyLeave(employeeId), HttpStatus.OK);
+    @RequestMapping(value = "/applyLeave/{employeeId}", method = RequestMethod.POST)
+    public ResponseEntity<LeaveEntitlementEntity> applyLeave(@PathVariable("employeeId") String employeeId, @RequestBody LeaveRequest applyLeaveRequest){
+        return new ResponseEntity<>(attendanceService.applyLeave(employeeId, applyLeaveRequest), HttpStatus.OK);
     }
 }
