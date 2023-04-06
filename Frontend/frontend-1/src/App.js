@@ -10,9 +10,11 @@ function App() {
 
     const history = useHistory();
     const [loading, setLoading] = useState(false);
+    const [empId, setEmpId] = useState(localStorage.getItem("empId"));
 
     const setEmployeeIdToLC = (e) =>{
         localStorage.setItem("empId", e.target.value ) ;
+        setEmpId(e.target.value);
     }
 
     function logout() {
@@ -26,7 +28,7 @@ function App() {
             <a href="/home/directory">All routes</a>        
 
             <div style={{float:'right'}}>
-                <input  className='form-control-sm' onChange={setEmployeeIdToLC} placeholder="empId"/> 
+                <input  className='form-control-sm' value={empId} onChange={setEmployeeIdToLC} placeholder="empId"/> 
             </div>    
 
             {localStorage.getItem("token") != null ?
