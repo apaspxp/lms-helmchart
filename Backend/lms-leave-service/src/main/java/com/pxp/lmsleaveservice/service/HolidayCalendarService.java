@@ -62,6 +62,7 @@ public class HolidayCalendarService implements IHolidayCalendarService {
         return "Upload successful.";
     }
 
+    @Override
     @Transactional(transactionManager = "leaveServiceTransactionManager", readOnly = true)
     public List<HolidayCalendarModel> findDistinctCityAndYear() {
         try {
@@ -75,6 +76,7 @@ public class HolidayCalendarService implements IHolidayCalendarService {
         }
     }
 
+    @Override
     @Transactional(readOnly = true)
     public byte[] downloadHolidayCalender(String city, int year) {
 
