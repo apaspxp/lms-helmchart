@@ -5,6 +5,10 @@ import com.pxp.lmsleaveservice.repo.HolidayCalendarRepo;
 import com.pxp.lmsleaveservice.service.HolidayCalendarService;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
+import com.pxp.lmsleaveservice.entity.LeaveEntitlementEntity;
+import com.pxp.lmsleaveservice.requests.LeaveRequest;
+import com.pxp.lmsleaveservice.service.interfaces.ILeaveService;
+import com.pxp.lmsleaveservice.service.interfaces.IHolidayCalendarService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -26,6 +30,10 @@ import java.util.List;
 public class LeaveController {
 
     @Autowired
+    private IHolidayCalendarService holidayCalendarService;
+
+    @Autowired
+    private ILeaveService attendanceService;
     private HolidayCalendarService holidayCalendarService;
     @Autowired
     private HolidayCalendarRepo holidayCalendarRepo;
@@ -63,6 +71,16 @@ public class LeaveController {
                 .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
                 .contentLength(data.length)
                 .body(resource);
+    }
+
+    @RequestMapping(value = "/fetchLeaveBalance/{employeeId}", method = RequestMethod.GET)
+    public ResponseEntity<LeaveEntitlementEntity> fetchLeaveBalance(@PathVariable("employeeId") String employeeId){
+        return new ResponseEntity<>(attendanceService.fetchLeaveBalance(employeeId), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/applyLeave/{employeeId}", method = RequestMethod.POST)
+    public ResponseEntity<LeaveEntitlementEntity> applyLeave(@PathVariable("employeeId") String employeeId, @RequestBody LeaveRequest applyLeaveRequest){
+        return new ResponseEntity<>(attendanceService.applyLeave(employeeId, applyLeaveRequest), HttpStatus.OK);
     }
 }
 

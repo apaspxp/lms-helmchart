@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import './Register.css';
 
-export default function Register(props) {
+export default function Register({location, loader}) {
   const [enableOTP, updateEnableOTP] = useState(false);
   const [enableAdditionalDetails, updateEnableAdditionalDetails] = useState(false);
   const [enableSuccessMsg, updateEnableSuccessMsg] = useState(false);
 
   const history = useHistory();
-  const [backPath, updateBackPath] = useState(props.location.backPath ? props.location.backPath : "/home");
+  const [backPath, updateBackPath] = useState(location.backPath ? location.backPath : "/home");
 
   const [mobile, updateMobile] = useState();
   const [emailId, updateEmailId] = useState();

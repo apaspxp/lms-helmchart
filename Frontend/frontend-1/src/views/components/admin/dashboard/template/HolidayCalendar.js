@@ -7,7 +7,7 @@ import FileSaver from 'file-saver';
 import Swal from 'sweetalert2'
 import './template.css';
 
-export default function HolidayCalendar(props) {
+export default function HolidayCalendar({loader}) {
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [message, setMessage] = useState('');
@@ -24,7 +24,7 @@ export default function HolidayCalendar(props) {
 
     const onFileUpload = (event) => {
         setMessage("");
-        props.loader(true);
+        loader(true);
         event.preventDefault();
         const formData = new FormData();
         formData.append(
@@ -35,26 +35,26 @@ export default function HolidayCalendar(props) {
         const url = apiConfig.uploadHolidayCalendar + '/Hyderabad/2023';
         axios.post(url, formData).then((response) => {
             console.log(response);
-            props.loader(false);
+            loader(false);
             successTrigger(response.data);
         }).catch((response) => {
             console.error("Could not upload the holiday calendar excel report.", response);
-            props.loader(false);
+            loader(false);
             failureTrigger("Could not upload the holiday calendar excel report. Error Code : "+response.code)
         });
     };
 
     const downloadSampleFile = ()=> { 
         setMessage("");
-        props.loader(true);
+        loader(true);
         console.log("downloading sample excel...")
         axios.get(apiConfig.downloadBlankTemplate, {responseType: 'blob'}).then((response) => {
             FileSaver.saveAs(response.data, "Holiday_calendar_template.xlsx");
-            props.loader(false);
+            loader(false);
             successTrigger("Holiday_calendar_template.xlsx Downloaded Successfully");
         }).catch((response) => {
             console.error("Could not download the excel report from the backend.", response);
-            props.loader(false);
+            loader(false);
             failureTrigger("Could not download the holiday calendar sample excel file. Error code : "+response.code)
         });
     }
@@ -116,7 +116,7 @@ export default function HolidayCalendar(props) {
                             <button className="btn btn-danger m-2" onClick={()=>{
                                 close(); 
                                 setMessage('')
-                                props.loader(false);
+                                loader(false);
                                 setSelectedFile(null);
                             }}>Cancel</button>
                         </div>

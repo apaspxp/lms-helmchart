@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Popup from 'reactjs-popup';
 
-export default function Sample(props) {
+export default function Sample({loader}) {
 
     function handleSample(event) {
         event.preventDefault();

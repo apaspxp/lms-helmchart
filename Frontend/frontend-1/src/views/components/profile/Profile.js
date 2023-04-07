@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Address from "./Address";
 import PersonalInfo from './PersonalInfo';
 
-export default function Profile(props) {
+export default function Profile({loader}) {
 
 
 	return (<>

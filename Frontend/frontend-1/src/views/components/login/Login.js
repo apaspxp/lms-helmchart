@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import './Login.css';
 
-export default function Login(props) {
+export default function Login({location, loader}) {
 
     const [username, updateUserName] = useState("");
     const [password, updatePassword] = useState("");
-    const [backPath, updateBackPath] = useState(props.location.backPath ? props.location.backPath : "/home");
+    const [backPath, updateBackPath] = useState(location.backPath ? location.backPath : "/home");
     const history = useHistory();
 
     console.log(backPath);
