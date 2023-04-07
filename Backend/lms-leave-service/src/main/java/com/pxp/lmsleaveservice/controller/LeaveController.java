@@ -34,7 +34,7 @@ public class LeaveController {
 
     @Autowired
     private ILeaveService attendanceService;
-    private HolidayCalendarService holidayCalendarService;
+//    private HolidayCalendarService holidayCalendarService;
     @Autowired
     private HolidayCalendarRepo holidayCalendarRepo;
 
@@ -44,7 +44,7 @@ public class LeaveController {
         return new ResponseEntity<>(holidayCalendarService.saveHolidayCalender(file, city, year), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "download_blank_template", method = RequestMethod.GET)
+    @RequestMapping(value = "downloadBlankTemplate", method = RequestMethod.GET)
     public ResponseEntity<Resource> downloadHolidayCalendarTemplate() throws IOException {
         Resource resource = new ClassPathResource("Templates/Holiday_calendar_template.xlsx");
         return ResponseEntity.ok()
@@ -59,7 +59,7 @@ public class LeaveController {
         return holidayCalendarService.findDistinctCityAndYear();
     }
 
-    @RequestMapping(value = "/holiday-calendar/download/{city}/{year}", method = RequestMethod.GET)
+    @RequestMapping(value = "/downloadHolidayCalendar/{city}/{year}", method = RequestMethod.GET)
     public ResponseEntity<Resource> downloadHolidayCalendar(@PathVariable @NotBlank String city, @PathVariable @NotBlank @Positive int year) {
         log.info("Entered into method downloadHolidayCalendar()");
         byte[] data = holidayCalendarService.downloadHolidayCalender(city, year);
