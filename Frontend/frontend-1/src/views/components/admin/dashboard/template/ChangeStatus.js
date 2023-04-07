@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Popup from 'reactjs-popup';
 
-export default function ChangeStatus(props) {
+export default function ChangeStatus({loader}) {
 
     function handleChangeStatus(event) {
         event.preventDefault();

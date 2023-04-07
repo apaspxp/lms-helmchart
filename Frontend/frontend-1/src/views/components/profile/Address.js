@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function Address(props) {
+export default function Address({loader}) {
 
 	const [newAddresMode, udateNewAddresMode] = useState(false);
 
