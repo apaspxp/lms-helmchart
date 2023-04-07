@@ -32,4 +32,11 @@ public class HolidayCalendarEntity {
         this.city = city;
         this.year = year;
     }
+
+    public HolidayCalendarEntity(String city, Integer year) {
+        this.city = city;
+        this.year = year;
+    }
+
+
 }
