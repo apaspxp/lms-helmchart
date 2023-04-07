@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface HolidayCalendarRepo extends JpaRepository<HolidayCalendarEntity, Integer> {
@@ -16,4 +17,15 @@ public interface HolidayCalendarRepo extends JpaRepository<HolidayCalendarEntity
     @Modifying
     @Query(value = "delete from HolidayCalendarEntity where date > :date")
     public void deleteByDate(Date date);
+
+    @Query(value = "select distinct new com.pxp.lmsleaveservice.entity.HolidayCalendarEntity(city, year) from HolidayCalendarEntity")
+    public List<HolidayCalendarEntity> findDistinctCityAndYear();
+
+    public Optional<List<HolidayCalendarEntity>> findByCityAndYear(String city, int year);
+
+    @Query(value = "select distinct city from HolidayCalendarEntity where city = :city")
+    public Optional<String> findCity(String city);
+
+    @Query(value = "select distinct year from HolidayCalendarEntity where year = :year")
+    public Optional<Integer> findYear(int year);
 }
