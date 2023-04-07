@@ -8,7 +8,7 @@ import ChangeManager from './template/ChangeManager';
 import ChangeStatus from './template/ChangeStatus';
 import Sample from './template/Sample';
 
-export default function AdminDashboard(props) {
+export default function AdminDashboard({loader}) {
 	
 	return (<>
 		<div className="container-fluid admin-dashboard">
@@ -19,35 +19,35 @@ export default function AdminDashboard(props) {
 					key="addEmployee"
 					title="Add Employee"
 					cardBody={<CreateEmployee 
-						loader = {props.loader}
+						loader = {loader}
 					/>}
 				/>
 				<DashboardCard
 					key="changeStatus"
 					title="Change status"
 					cardBody={<ChangeStatus 
-						loader = {props.loader}
+						loader = {loader}
 					/>}
 				/>
 				<DashboardCard
 					key="changeManager"
 					title="Change Manager"
 					cardBody={<ChangeManager 
-						loader = {props.loader}
+						loader = {loader}
 					/>}
 				/>
 				<DashboardCard
 					key="holidayCalendar"
 					title="Holiday Calendar"
 					cardBody={<HolidayCalendar 
-						loader = {props.loader}
+						loader = {loader}
 					/>}
 				/>
 				<DashboardCard
 					key="sample"
 					title="Sample"
 					cardBody={<Sample 
-						loader = {props.loader}
+						loader = {loader}
 					/>}
 				/>
 			</div>

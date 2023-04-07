@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function PersonalInfo(props) {
+export default function PersonalInfo({loader}) {
 
 	const [editMode, updateEditMode] = useState(false);
 

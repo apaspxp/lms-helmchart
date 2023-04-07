@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { PopupButton } from "../../../../PopupButton/PopupButton";
 import Popup from 'reactjs-popup';
 
-export default function CreateEmployee(props) {
+export default function CreateEmployee({loader}) {
 
     const [empFName, setEmpFName] = useState('');
     const [empMName, setEmpMName] = useState('');
