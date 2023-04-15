@@ -54,6 +54,7 @@ class EmployeeServiceTest {
 
             var employeeEntity = employeeEntitySupplier.get();
             Mockito.when(employeeRepo.findByEmployeeId(1)).thenReturn(employeeEntity);
+            Mockito.when(employeeRepo.save(Mockito.any())).thenReturn(employeeEntity);
             var updatedEmployee = employeeService.updateEmployee(1, employeeModel);
             assertEquals(1, updatedEmployee.getEmployeeId());
         } catch (Exception e) {
