@@ -5,6 +5,7 @@ import com.pxp.lmsleaveservice.entity.EmployeeEntity;
 import com.pxp.lmsleaveservice.model.AddressModel;
 import com.pxp.lmsleaveservice.model.EmployeeModel;
 import com.pxp.lmsleaveservice.model.ResponseModel;
+import com.pxp.lmsleaveservice.repo.AddressRepo;
 import com.pxp.lmsleaveservice.repo.EmployeeRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class EmployeeService {
 
     @Autowired
     private EmployeeRepo employeeRepo;
+    @Autowired
+    private AddressRepo addressRepo;
 
     @Transactional(transactionManager = "leaveServiceTransactionManager")
     public ResponseModel<EmployeeModel> addEmployee(EmployeeModel employeeModel) {
@@ -32,6 +35,15 @@ public class EmployeeService {
                 return new ResponseModel<EmployeeModel>("Employee already exists in the database", employeeModel);
             } else {
                 var employeeEntity = employeeRepo.save(employee);
+                var addresses =
+                        employee.getAddress()
+                                .stream()
+                                .map(addressEntity -> {
+                                    addressEntity.setEmployee(employee);
+                                    return addressEntity;
+                                })
+                                .collect(Collectors.toList());
+                addressRepo.saveAll(addresses);
                 var persistedEmployeeModel = employeeEntityToEmployeeModelConverter.apply(employeeEntity);
                 log.info("Employee added successfully. " + persistedEmployeeModel);
                 return new ResponseModel<EmployeeModel>("Employee added successfully", persistedEmployeeModel);
@@ -92,6 +104,7 @@ public class EmployeeService {
             .stream()
             .map(addressEntityToAddressModelConverter)
             .collect(Collectors.toList());
+//    public Function<List<AddressModel>, EmployeeEntity> toEmployeeModelList = addressEntity -> new AddressEntity().getEmployee();
 
     public Function<EmployeeModel, List<AddressEntity>> toAddressEntityList = employeeModel -> employeeModel.address()
             .stream()

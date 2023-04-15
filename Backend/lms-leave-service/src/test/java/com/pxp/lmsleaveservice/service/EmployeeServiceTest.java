@@ -4,6 +4,7 @@ import com.pxp.lmsleaveservice.entity.AddressEntity;
 import com.pxp.lmsleaveservice.entity.EmployeeEntity;
 import com.pxp.lmsleaveservice.model.AddressModel;
 import com.pxp.lmsleaveservice.model.EmployeeModel;
+import com.pxp.lmsleaveservice.repo.AddressRepo;
 import com.pxp.lmsleaveservice.repo.EmployeeRepo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,6 +27,9 @@ class EmployeeServiceTest {
     @Mock
     private EmployeeRepo employeeRepo;
 
+    @Mock
+    private AddressRepo addressRepo;
+
     @Test
     public void testAddEmployee() {
         try {
@@ -35,6 +39,7 @@ class EmployeeServiceTest {
 
             Mockito.when(employeeRepo.existsByEmailOrMobileNo(employeeModel.email(), employeeModel.mobileNo())).thenReturn(false);
             Mockito.when(employeeRepo.save(Mockito.any())).thenReturn(employeeEntity);
+            Mockito.when(addressRepo.saveAll(Mockito.any())).thenReturn(List.of(addressEntitySupplier.get()));
 
             var expectedEmployeeModel = employeeModelSupplier.get();
 

@@ -34,4 +34,19 @@ public class AddressEntity {
     @Column(name="Region")
     private String region;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id")
+    private EmployeeEntity employee;
+
+    public AddressEntity(int addressId, String addressLine1, String addressLine2, String locality, int pinCode, String city, String state, String country, String region) {
+        this.addressId = addressId;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.locality = locality;
+        this.pinCode = pinCode;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.region = region;
+    }
 }

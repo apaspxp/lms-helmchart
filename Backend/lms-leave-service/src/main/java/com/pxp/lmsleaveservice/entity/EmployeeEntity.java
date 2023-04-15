@@ -63,8 +63,7 @@ public class EmployeeEntity {
 
     @Column(name = "LocationId")
     private int locationId;
-    @OneToMany(targetEntity = AddressEntity.class, cascade = CascadeType.ALL )
-    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "employee")
     private List<AddressEntity> address;
 
 
