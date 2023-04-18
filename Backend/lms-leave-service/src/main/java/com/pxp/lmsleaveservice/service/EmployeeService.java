@@ -54,7 +54,8 @@ public class EmployeeService {
                                         return addressEntity;
                                     })
                                     .collect(Collectors.toList());
-                    addressRepo.saveAll(addresses);
+                    if (!addresses.isEmpty())
+                        addressRepo.saveAll(addresses);
                     var persistedEmployeeModel = employeeEntityToEmployeeModelConverter.apply(employeeEntity);
                     log.info("Employee added successfully. " + persistedEmployeeModel);
                     return new ResponseModel<EmployeeModel>("Employee added successfully", persistedEmployeeModel);
