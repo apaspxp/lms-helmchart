@@ -1,13 +1,12 @@
 package com.pxp.lmsleaveservice.service;
-
 import com.pxp.lmsleaveservice.entity.HolidayCalendarEntity;
 import com.pxp.lmsleaveservice.model.HolidayCalendarModel;
+import com.pxp.lmsleaveservice.repo.EmployeeRepo;
 import com.pxp.lmsleaveservice.repo.HolidayCalendarRepo;
 import com.pxp.lmsleaveservice.service.interfaces.IHolidayCalendarService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +29,8 @@ import java.util.stream.StreamSupport;
 public class HolidayCalendarService implements IHolidayCalendarService {
     @Autowired
     private HolidayCalendarRepo holidayCalendarRepo;
+    @Autowired
+    private EmployeeRepo employeeRepo;
 
     @Override
     @Transactional(transactionManager = "leaveServiceTransactionManager")
@@ -191,7 +192,6 @@ public class HolidayCalendarService implements IHolidayCalendarService {
             throw new RuntimeException(e.getMessage());
         }
     };
-
 }
 
 

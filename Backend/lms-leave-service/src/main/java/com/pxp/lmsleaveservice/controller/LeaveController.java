@@ -1,8 +1,12 @@
 package com.pxp.lmsleaveservice.controller;
 
+import com.pxp.lmsleaveservice.entity.EmployeeEntity;
+import com.pxp.lmsleaveservice.model.EmployeeModel;
 import com.pxp.lmsleaveservice.model.HolidayCalendarModel;
+import com.pxp.lmsleaveservice.model.ResponseModel;
 import com.pxp.lmsleaveservice.repo.HolidayCalendarRepo;
 import com.pxp.lmsleaveservice.service.HolidayCalendarService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import com.pxp.lmsleaveservice.entity.LeaveEntitlementEntity;
@@ -27,6 +31,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api")
 @Slf4j
+@CrossOrigin(origins = "http://localhost:3000")
 public class LeaveController {
 
     @Autowired
@@ -82,6 +87,7 @@ public class LeaveController {
     public ResponseEntity<LeaveEntitlementEntity> applyLeave(@PathVariable("employeeId") String employeeId, @RequestBody LeaveRequest applyLeaveRequest){
         return new ResponseEntity<>(attendanceService.applyLeave(employeeId, applyLeaveRequest), HttpStatus.OK);
     }
+
 }
 
 
