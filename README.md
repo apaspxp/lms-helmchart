@@ -34,3 +34,12 @@ ssl, swagger, acuator, micrometer, observability in spring boot 3, optional...re
     
       LMS Portal          : http://localhost:3000/home
 
+# Abbreviations
+
+    SL  - Sick Leave
+    CL  - Casual Leave
+    EL  - Earned Leave
+    PAL - Paternity Leave
+    LOP - Loss Of Pay
+    LMS - Leave Management Service
+    
