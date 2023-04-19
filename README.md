@@ -23,6 +23,7 @@ ssl, swagger, acuator, micrometer, observability in spring boot 3, optional...re
 # URLs
 
     Backend :
+    
       Config Server       : http://localhost:5555
       Leave Service       : http://localhost:8000/api
       Notification Service: http://localhost:8001
@@ -30,5 +31,6 @@ ssl, swagger, acuator, micrometer, observability in spring boot 3, optional...re
       Profile Service     : http://localhost:8003/lms-profile-service/api
       
     Frontend:
+    
       LMS Portal          : http://localhost:3000/home
 
