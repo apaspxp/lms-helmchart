@@ -52,51 +52,48 @@ public class LeaveService implements ILeaveService {
         */
 
         //In this point request is validated, now check sufficient balance available or not
-        int daysBetween = commonUtility.getDifferenceDays.applyAsInt(applyLeaveRequest.getFrom(), applyLeaveRequest.getTo());
+        int daysBetween = CommonUtility.getDifferenceDays.applyAsInt(applyLeaveRequest.getFrom(), applyLeaveRequest.getTo());
 
-        switch (applyLeaveRequest.getLeaveType()){
+        switch (applyLeaveRequest.getLeaveType()) {
 
             //Sick Leave
-            case "SL":
-                if(entity.getSlBal() >= daysBetween){
-                    entity.setSlBal(entity.getSlBal()-daysBetween);
+            case "SL" -> {
+                if (entity.getSlBal() >= daysBetween) {
+                    entity.setSlBal(entity.getSlBal() - daysBetween);
                 } else {
                     leaveServiceHelper.insufficientLeave.accept(applyLeaveRequest.getLeaveType());
                 }
-                break;
+            }
 
             //Casual Leave
-            case "CL":
-                if(entity.getClBal() >= daysBetween){
-                    entity.setClBal(entity.getClBal()-daysBetween);
+            case "CL" -> {
+                if (entity.getClBal() >= daysBetween) {
+                    entity.setClBal(entity.getClBal() - daysBetween);
                 } else {
                     leaveServiceHelper.insufficientLeave.accept(applyLeaveRequest.getLeaveType());
                 }
-                break;
+            }
 
             //Earned Leave
-            case "EL":
-                if(entity.getElBal() >= daysBetween){
-                    entity.setElBal(entity.getElBal()-daysBetween);
+            case "EL" -> {
+                if (entity.getElBal() >= daysBetween) {
+                    entity.setElBal(entity.getElBal() - daysBetween);
                 } else {
                     leaveServiceHelper.insufficientLeave.accept(applyLeaveRequest.getLeaveType());
                 }
-                break;
+            }
 
             //Paternity Leave
-            case "PAL":
-                if(entity.getPalBal() >= daysBetween){
-                    entity.setPalBal(entity.getPalBal()-daysBetween);
+            case "PAL" -> {
+                if (entity.getPalBal() >= daysBetween) {
+                    entity.setPalBal(entity.getPalBal() - daysBetween);
                 } else {
                     leaveServiceHelper.insufficientLeave.accept(applyLeaveRequest.getLeaveType());
                 }
-                break;
+            }
 
             //Loss Of Pay
-            case "LOP":
-                entity.setLopOverdraft(entity.getLopOverdraft()+daysBetween);
-                break;
-
+            case "LOP" -> entity.setLopOverdraft(entity.getLopOverdraft() + daysBetween);
         }
         leaveEntitlementRepo.save(entity);
 
