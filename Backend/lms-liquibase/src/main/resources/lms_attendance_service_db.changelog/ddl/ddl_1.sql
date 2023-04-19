@@ -1,9 +1,9 @@
 -- liquibase formatted sql
 
--- changeset rajes:1678898835087-8
+-- changeset Sarthak:1681904655480-2
 -- preconditions onFail:MARK_RAN onError:MARK_RAN
 -- precondition-sql-check expectedResult:0 SELECT count(*) FROM information_schema.tables WHERE table_schema = 'LMSATTENDANCESERVICE' AND table_name = 'LEAVE_ENTITLEMENT';
-CREATE TABLE LEAVE_ENTITLEMENT (
+CREATE TABLE LEAVE_ENTITLEMENTSSSSS (
     EMPLOYEE_ID VARCHAR(255) PRIMARY KEY,
     SICK_LEAVE_BALANCE INT,
     SICK_LEAVE_ENTITLE INT,
