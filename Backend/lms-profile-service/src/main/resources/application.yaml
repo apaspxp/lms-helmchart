@@ -1,0 +1,19 @@
+server:
+  port: 8003
+  servlet:
+    context-path: /lms-profile-service
+spring:
+  application:
+    name: lms-profile-service
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  config:
+    import: optional:configserver:http://localhost:5555
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
