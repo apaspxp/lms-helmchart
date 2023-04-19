@@ -7,12 +7,17 @@ import com.pxp.lmsleaveservice.model.EmployeeModel;
 import com.pxp.lmsleaveservice.model.ResponseModel;
 import com.pxp.lmsleaveservice.repo.AddressRepo;
 import com.pxp.lmsleaveservice.repo.EmployeeRepo;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -30,23 +35,35 @@ public class EmployeeService {
         try {
             log.info("Entered into method addEmployee()");
             var employee = employeeModelToEmployeeEntityConverter.apply(employeeModel);
-            if (employeeRepo.existsByEmailOrMobileNo(employeeModel.email(), employeeModel.mobileNo())) {
-                log.info("Email and Phone number already exist");
-                return new ResponseModel<EmployeeModel>("Employee already exists in the database", employeeModel);
-            } else {
-                var employeeEntity = employeeRepo.save(employee);
-                var addresses =
-                        employee.getAddress()
-                                .stream()
-                                .map(addressEntity -> {
-                                    addressEntity.setEmployee(employee);
-                                    return addressEntity;
-                                })
-                                .collect(Collectors.toList());
-                addressRepo.saveAll(addresses);
-                var persistedEmployeeModel = employeeEntityToEmployeeModelConverter.apply(employeeEntity);
-                log.info("Employee added successfully. " + persistedEmployeeModel);
-                return new ResponseModel<EmployeeModel>("Employee added successfully", persistedEmployeeModel);
+
+            ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+            Validator validator = factory.getValidator();
+            var violations = validator.validate(employee);
+
+            if (violations.isEmpty()) {
+                if (employeeRepo.existsByEmailOrMobileNo(employeeModel.email(), employeeModel.mobileNo())) {
+                    log.info("Email and Phone number already exist");
+                    return new ResponseModel<EmployeeModel>("Employee already exists in the database", employeeModel);
+                } else {
+                    var employeeEntity = employeeRepo.save(employee);
+                    var addresses =
+                            employee.getAddress()
+                                    .stream()
+                                    .map(addressEntity -> {
+                                        addressEntity.setEmployee(employee);
+                                        return addressEntity;
+                                    })
+                                    .collect(Collectors.toList());
+                    if (!addresses.isEmpty())
+                        addressRepo.saveAll(addresses);
+                    var persistedEmployeeModel = employeeEntityToEmployeeModelConverter.apply(employeeEntity);
+                    log.info("Employee added successfully. " + persistedEmployeeModel);
+                    return new ResponseModel<EmployeeModel>("Employee added successfully", persistedEmployeeModel);
+                }
+            }else {
+                violations.stream()
+                        .forEach(e -> System.out.println("Validation error: " + e));
+                return new ResponseModel<EmployeeModel>("Entity validation failed.", null);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,10 +123,13 @@ public class EmployeeService {
             .collect(Collectors.toList());
 //    public Function<List<AddressModel>, EmployeeEntity> toEmployeeModelList = addressEntity -> new AddressEntity().getEmployee();
 
-    public Function<EmployeeModel, List<AddressEntity>> toAddressEntityList = employeeModel -> employeeModel.address()
+    public Function<EmployeeModel, List<AddressEntity>> toAddressEntityList = employeeModel -> Objects.nonNull(employeeModel.address()) ?
+            employeeModel.address()
             .stream()
             .map(addressModelToAddressEntityConverter)
-            .collect(Collectors.toList());
+            .collect(Collectors.toList())
+            :
+            Collections.emptyList();
     public Function<EmployeeEntity, EmployeeModel> employeeEntityToEmployeeModelConverter = employeeEntity -> new EmployeeModel(employeeEntity.getEmployeeId(),
             employeeEntity.getFirstName(),
             employeeEntity.getMiddleName(),
