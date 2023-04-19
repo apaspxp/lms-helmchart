@@ -6,9 +6,6 @@ databaseChangeLog:
     file: ./ddl/ddl.sql
     relativeToChangelogFile: true
 - include:
-      file: ./ddl/ddl-lms-8.sql
-      relativeToChangelogFile: true
-- include:
     file: ./dml/dml.sql
     relativeToChangelogFile: true
 #    changes:

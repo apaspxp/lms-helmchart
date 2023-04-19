@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1681904655480-1
+      author: Sarthak (generated)
+  - include:
+      file: ./ddl/ddl_1.sql
+      relativeToChangelogFile: true

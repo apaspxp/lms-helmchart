@@ -1,17 +1,28 @@
 #LMSLEAVESERVICE
 spring:
+
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/LMSLEAVESERVICE
     username: lms
     password: lms123
   liquibase:
-    change-log: classpath:db.changelog/liquibase-outputChangeLog.yaml
-  #LMSATTENDANCESERVICE
+    change-log: classpath:lms_leave_service_db.changelog/liquibase-outputChangeLog.yaml
+
+  #attendance
   attendance-datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     jdbc-url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/LMSATTENDANCESERVICE
     username: lms
     password: lms123
   attendance-liquibase:
-    change-log: classpath:db.changelog/liquibase-attendance-outputChangeLog.yaml
+    change-log: classpath:lms_attendance_service_db.changelog/liquibase-outputChangeLog.yaml
+
+  #profile
+  profile-datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbc-url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/LMS_PROFILE_SERVICE
+    username: lms
+    password: lms123
+  profile-liquibase:
+    change-log: classpath:lms_profile_service_db.changelog/liquibase-outputChangeLog.yaml
