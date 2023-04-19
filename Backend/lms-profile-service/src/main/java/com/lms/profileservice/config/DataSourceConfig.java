@@ -42,7 +42,7 @@ public class DataSourceConfig {
     }
 
     @Bean(name = "profileServiceTransactionManager")
-    public JpaTransactionManager leaveServiceTransactionManager(@Qualifier("localContainerEntityManagerFactoryBean") EntityManagerFactory leaveServiceEntityManagerFactory ) {
-        return new JpaTransactionManager(leaveServiceEntityManagerFactory);
+    public JpaTransactionManager profileServiceTransactionManager(@Qualifier("localContainerEntityManagerFactoryBean") EntityManagerFactory profileServiceEntityManagerFactory ) {
+        return new JpaTransactionManager(profileServiceEntityManagerFactory);
     }
 }
