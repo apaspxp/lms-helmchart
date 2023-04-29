@@ -2,7 +2,7 @@
 
 -- changeset Sarthak:1681904655480-2
 -- preconditions onFail:MARK_RAN onError:MARK_RAN
--- precondition-sql-check expectedResult:0 SELECT count(*) FROM information_schema.tables WHERE table_schema = 'LMSATTENDANCESERVICE' AND table_name = 'LEAVE_ENTITLEMENT';
+-- precondition-sql-check expectedResult:0 SELECT count(*) FROM information_schema.tables WHERE table_schema = '' AND table_name = 'LEAVE_ENTITLEMENT';
 CREATE TABLE LEAVE_ENTITLEMENTSSSSS (
     EMPLOYEE_ID VARCHAR(255) PRIMARY KEY,
     SICK_LEAVE_BALANCE INT,
@@ -14,4 +14,20 @@ CREATE TABLE LEAVE_ENTITLEMENTSSSSS (
     PATERNITY_LEAVE_BALANCE INT,
     PATERNITY_LEAVE_ENTITLE INT,
     LOP_OVERDRAFT INT
+);
+
+-- changeset rajes:1678898835087-3
+-- preconditions onFail:MARK_RAN onError:MARK_RAN
+-- precondition-sql-check expectedResult:0 SELECT count(*) FROM information_schema.tables WHERE table_schema = 'LMSATTENDANCESERVICE' AND table_name = 'ATTENDANCE';
+CREATE TABLE ATTENDANCE (
+  EMPLOYEEID INT NOT NULL,
+  DATE DATE NOT NULL,
+  INTIME TIME,
+  OUTTIME TIME,
+  DURATION VARCHAR(10),
+  ATTENDANCERECORD VARCHAR(20),
+  APPROVALSTATUS VARCHAR(20),
+  APPROVEDBY VARCHAR(50),
+  COMMENTS VARCHAR(255),
+  PRIMARY KEY (EMPLOYEEID, DATE)
 );
