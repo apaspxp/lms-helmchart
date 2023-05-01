@@ -1,6 +1,6 @@
 -- liquibase formatted sql
 
--- changeset Sarthak:1681902748664-3
+-- changeset Sarthak:1681902748664-4
 -- preconditions onFail:MARK_RAN onError:MARK_RAN
 -- precondition-sql-check expectedResult:0 SELECT count(*) FROM information_schema.tables WHERE table_schema = 'LMS_PROFILE_SERVICE' AND table_name = 'EMPLOYEE';
 CREATE TABLE EMPLOYEE (
@@ -20,7 +20,7 @@ CREATE TABLE EMPLOYEE (
   PRIMARY KEY (EMPLOYEE_ID)
 );
 
--- changeset Sarthak:1681902748664-4
+-- changeset Sarthak:1681902748664-5
 -- preconditions onFail:MARK_RAN onError:MARK_RAN
 -- precondition-sql-check expectedResult:0 SELECT count(*) FROM information_schema.tables WHERE table_schema = 'LMS_PROFILE_SERVICE' AND table_name = 'ADDRESS';
 CREATE TABLE ADDRESS (
