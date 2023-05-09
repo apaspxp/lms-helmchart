@@ -7,6 +7,7 @@ import HolidayCalendar from './template/HolidayCalendar';
 import ChangeManager from './template/ChangeManager';
 import ChangeStatus from './template/ChangeStatus';
 import Sample from './template/Sample';
+import SwipeInOut from "../../profile/SwipeInOut";
 
 export default function AdminDashboard({loader}) {
 	
@@ -47,6 +48,13 @@ export default function AdminDashboard({loader}) {
 					key="sample"
 					title="Sample"
 					cardBody={<Sample 
+						loader = {loader}
+					/>}
+				/>
+				<DashboardCard
+					key="SwipeInOut"
+					title="Swipe In And Out"
+					cardBody={<SwipeInOut 
 						loader = {loader}
 					/>}
 				/>
