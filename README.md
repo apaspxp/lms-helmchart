@@ -46,4 +46,29 @@ ssl, swagger, acuator, micrometer, observability in spring boot 3, optional...re
     PAL - Paternity Leave
     LOP - Loss Of Pay
     LMS - Leave Management Service
+   
+# Auth 
     
+    ROLES -
+      EMPLOYEE
+      ADMIN
+    
+   
+# APIs 
+    
+    ATTENDANCESERVICE
+      - http://localhost:8002/lms-attendance-service/api/swipe?option=in - ADMIN, EMPLOYEE
+      -
+      
+    LEAVE SERVICE
+      - 
+      -
+      -
+      
+    PROFILE SERVICE
+      -
+      -
+      -
+      
+      
+ 
