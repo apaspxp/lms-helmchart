@@ -1,4 +1,4 @@
-package com.lms.attendanceservice.util;
+package com.pxp.lmsleaveservice.utility;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;

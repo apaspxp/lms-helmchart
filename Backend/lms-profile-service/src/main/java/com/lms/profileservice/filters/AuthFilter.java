@@ -1,10 +1,10 @@
-package com.lms.attendanceservice.filters;
+package com.lms.profileservice.filters;
 
-import com.lms.attendanceservice.utility.RoleConverter;
+import com.lms.profileservice.utility.RoleConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -19,7 +19,7 @@ public class AuthFilter {
         httpSecurity
                 .authorizeHttpRequests(request ->
                         request
-                                .requestMatchers("/api/swipe").hasRole("EMPLOYEE")
+                                .requestMatchers("/api/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
