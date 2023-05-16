@@ -49,26 +49,28 @@ ssl, swagger, acuator, micrometer, observability in spring boot 3, optional...re
    
 # Auth 
     
-    ROLES -
+   # ROLES
       EMPLOYEE
       ADMIN
     
    
 # APIs 
     
-    ATTENDANCESERVICE
-      - http://localhost:8002/lms-attendance-service/api/swipe?option=in - ADMIN, EMPLOYEE
-      -
+  #### ATTENDANCESERVICE
+  |API                                                                |  Roles  |
+  |------------------------------------------------------------------ |---------|
+  | http://localhost:8002/lms-attendance-service/api/swipe?option=in  | EMPLOYEE|
+
+  #### LEAVE SERVICE
+  |API                                                                |  Roles  |
+  |------------------------------------------------------------------ |---------|
+
       
-    LEAVE SERVICE
-      - 
-      -
-      -
-      
-    PROFILE SERVICE
-      -
-      -
-      -
+  #### PROFILE SERVICE
+  |API                                                                |  Roles  |
+  |------------------------------------------------------------------ |---------|
+
+
       
       
  
