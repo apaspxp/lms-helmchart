@@ -70,7 +70,7 @@ public class SwipeService implements ISwipeService {
                     response = new Response<>(new SwipeResponse(empId, today, time), ResponseStatus.SUCCESS, "Successfully swiped out");
                 } else{
                     log.info("Swipe out failed for empId {}", empId);
-                    response = new Response<>(new SwipeResponse(empId, today, time), ResponseStatus.SUCCESS, "Failed! swipe in first");
+                    response = new Response<>(new SwipeResponse(empId, today, time), ResponseStatus.FAILED, "Failed! swipe in first");
                 }
             }
             return response;
