@@ -24,6 +24,7 @@ public class SwipeController {
         log.info("Exit swipe controller");
         return responseEntity;
     }
+
 }
 
 
