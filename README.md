@@ -56,7 +56,7 @@ ssl, swagger, acuator, micrometer, observability in spring boot 3, optional...re
    
 # APIs 
     
-  #### ATTENDANCESERVICE
+  #### ATTENDANCE SERVICE
   |API                                                                |  Roles  |
   |------------------------------------------------------------------ |---------|
   | http://localhost:8002/lms-attendance-service/api/swipe?option=in  | EMPLOYEE|
