@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: lms-attendance-service
+  name: lms-attendance-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lms-attendance-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: lms-attendance-service
+    spec:
+      containers:
+        - image: apaspxp/lms-attendance-service:latest
+          name: lms-attendance-service
+          resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: lms-attendance-service
+  name: lms-attendance-service
+spec:
+  ports:
+    - name: 8002-8002
+      port: 8002
+      protocol: TCP
+      targetPort: 8002
+      nodePort: 30000
+  selector:
+    app: lms-attendance-service
+  type: NodePort
+status:
+  loadBalancer: {}
