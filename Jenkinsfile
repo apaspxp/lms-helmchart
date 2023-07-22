@@ -14,7 +14,8 @@
     steps {
     script {
   withCredentials([usernamePassword(credentialsId: 'DockerHub_Credential', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
-        // Generate a timestamp or version number for the image tag                                                                                                                               def timestamp = new Date().format("yyyyMMdd_HHmmss")
+        // Generate a timestamp or version number for the image tag                                                                                                                               
+           def timestamp = new Date().format("yyyyMMdd_HHmmss")
            def imageTag = "lms-attendance-service:${timestamp}"
 
        // Build the Docker image using the spring-boot:build-image Maven goal
